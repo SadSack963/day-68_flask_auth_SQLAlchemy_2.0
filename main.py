@@ -89,7 +89,10 @@ def load_user(user_id):
     :param user_id: unicode user ID
     :return: user object
     """
-    return User.query.get(int(user_id))
+    # return User.query.get(int(user_id))  # Deprecated
+
+    with app.app_context():
+        return db.session.get(entity=User, ident=user_id)
 
 
 #   =======================================
